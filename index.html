@@ -13,8 +13,8 @@
     input[type="text"], input[type="email"], input[type="number"], input[type="password"], textarea, select {
       width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
     }
-    .options { margin-top: 8px; }
-    .options label { font-weight: normal; margin-right: 24px; }
+    .options div { margin: 12px 0; }
+    .options label { font-weight: normal; margin-left: 8px; }
     .note { font-size: 0.95em; color: #777; margin-top: 4px; }
     button { margin-top: 24px; padding: 10px 24px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 1em; cursor: pointer;}
     button:hover { background: #0056b3; }
@@ -23,7 +23,6 @@
     .section {margin-bottom: 40px;}
   </style>
   <script>
-    // Simple JS for panels and demo login
     function showPanel(panelId) {
       document.getElementById('form-section').classList.add('hidden');
       document.getElementById('owner-login-section').classList.add('hidden');
@@ -32,7 +31,6 @@
       document.getElementById('admin-panel').classList.add('hidden');
       document.getElementById(panelId).classList.remove('hidden');
     }
-
     function ownerLogin(e) {
       e.preventDefault();
       var email = document.getElementById('owner-email').value;
@@ -43,10 +41,8 @@
         alert("Invalid owner credentials!");
       }
     }
-
     function adminLogin(e) {
       e.preventDefault();
-      // Add your own logic for admin login here
       showPanel('admin-panel');
     }
     function showForm() { showPanel('form-section'); }
@@ -55,14 +51,11 @@
   </script>
 </head>
 <body>
-  <!-- Navigation -->
   <div style="text-align:center;margin-bottom:24px;">
     <button onclick="showForm()">Studio Form</button>
     <button onclick="showOwnerLogin()">Owner Panel</button>
     <button onclick="showAdminLogin()">Admin Panel</button>
   </div>
-
-  <!-- KH2 Studio Form -->
   <div id="form-section" class="form-container section">
     <h1>KH2 STUDIO FORM</h1>
     <div class="subtitle">Everything will come from the email: <a href="mailto:kyson3713@gmail.com">kyson3713@gmail.com</a></div>
@@ -70,42 +63,42 @@
       <label for="name">1. What shall we call you? <span class="required">*</span></label>
       <input type="text" id="name" name="name" required placeholder="Enter your name">
       <div class="note">(Nothing inappropriate or it will be instantly declined)</div>
-
       <label for="email">2. What is your email? <span class="required">*</span></label>
       <input type="email" id="email" name="email" required placeholder="Enter your email">
-
+      <!-- Improved Question 3 -->
       <label for="workfor">3. What would you like to work for? <span class="required">*</span></label>
       <div class="options">
-        <input type="radio" id="scratch" name="workfor" value="Scratch DEPT" required>
-        <label for="scratch">Scratch DEPT</label>
-        <input type="radio" id="roblox" name="workfor" value="Roblox Studio" required>
-        <label for="roblox">Roblox Studio</label>
+        <div>
+          <input type="radio" id="workfor-scratch" name="workfor" value="Scratch DEPT" required>
+          <label for="workfor-scratch">Scratch DEPT</label>
+        </div>
+        <div>
+          <input type="radio" id="workfor-roblox" name="workfor" value="Roblox Studio">
+          <label for="workfor-roblox">Roblox Studio</label>
+        </div>
       </div>
-
       <label for="projects">4. What projects do you have?</label>
       <textarea id="projects" name="projects" rows="2" placeholder="List your projects here (optional)"></textarea>
       <div class="note">(If none, don't worry—just skip this one)</div>
-
       <label>5. Will you leak projects? <span class="required">*</span></label>
       <div class="options">
-        <input type="radio" id="leak-yes" name="leak" value="Yes" required>
-        <label for="leak-yes">Yes</label>
-        <input type="radio" id="leak-no" name="leak" value="No" required>
-        <label for="leak-no">No</label>
+        <div>
+          <input type="radio" id="leak-yes" name="leak" value="Yes" required>
+          <label for="leak-yes">Yes</label>
+        </div>
+        <div>
+          <input type="radio" id="leak-no" name="leak" value="No">
+          <label for="leak-no">No</label>
+        </div>
       </div>
-
       <label for="where">6. Where will we find you? <span class="required">*</span></label>
       <input type="text" id="where" name="where" required placeholder="Your main platform, username, or link">
-
       <label for="age">7. How old are you? <span class="required">*</span></label>
       <input type="number" id="age" name="age" required min="1" max="120" placeholder="Enter your age">
       <div class="note">(This is not shared)</div>
-
       <button type="submit">Submit</button>
     </form>
   </div>
-
-  <!-- Owner Login Section -->
   <div id="owner-login-section" class="panel-container section hidden">
     <h2>Owner Panel Login</h2>
     <form onsubmit="ownerLogin(event)">
@@ -116,8 +109,6 @@
       <button type="submit">Login</button>
     </form>
   </div>
-
-  <!-- Owner Panel -->
   <div id="owner-panel" class="panel-container section hidden">
     <h2>Owner Panel</h2>
     <p>You are logged in as <strong>Kysongesset@gmail.com</strong></p>
@@ -128,8 +119,6 @@
     </ul>
     <button onclick="showForm()">Back to Form</button>
   </div>
-
-  <!-- Admin Login Section -->
   <div id="admin-login-section" class="panel-container section hidden">
     <h2>Admin Panel Login</h2>
     <form onsubmit="adminLogin(event)">
@@ -138,8 +127,6 @@
       <button type="submit">Login</button>
     </form>
   </div>
-
-  <!-- Admin Panel -->
   <div id="admin-panel" class="panel-container section hidden">
     <h2>Admin Panel</h2>
     <p>View responses (feature placeholder)</p>
